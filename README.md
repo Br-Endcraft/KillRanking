@@ -8,7 +8,7 @@
 
 ###make sure if your config.yml has these codes
 ```yaml
-enable_mysql: false
+enable_mysql: false to flatfile | true for mysql
 mysql:
   host: localhost:3306
   database: KillRanking
