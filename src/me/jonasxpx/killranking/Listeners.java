@@ -33,7 +33,7 @@ public class Listeners implements Listener{
 				break;
 			}
 		}
-	}*/
+	}
 	
 	@EventHandler
 	public void onPlayerLogin(PlayerJoinEvent e){
