@@ -33,12 +33,13 @@ public class Listeners implements Listener{
 				break;
 			}
 		}
-	}
+	}*/
 	
 	@EventHandler
 	public void onPlayerLogin(PlayerJoinEvent e){
 		KillRanking.cacheManager.put(e.getPlayer().getName().toLowerCase(), new CacheManager(e.getPlayer().getName().toLowerCase()));
 	}
+
 	
 	@EventHandler
 	public void onPlayerQuit(PlayerQuitEvent e){
