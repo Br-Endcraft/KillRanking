@@ -6,6 +6,14 @@
 - [ ] Remove flatfiles.
 - [ ] Clear the code.
 
+###LegendChat
+make sure you have the [LegendChat](http://dev.bukkit.org/bukkit-plugins/legendchat/).
+add the key in config.yml of the LegendChat
+```yaml
+format:
+  default: ........ {killranking} .........
+```
+
 
 ###Download the last release
 [0.0.3](https://github.com/JonasXPX/KillRanking/releases)
