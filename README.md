@@ -6,7 +6,7 @@
 - [ ] Remove flatfiles.
 - [ ] Clear the code.
 
-###make sure if your config.yml has these code
+###make sure if your config.yml has these codes
 ```yaml
 enable_mysql: false
 mysql:
