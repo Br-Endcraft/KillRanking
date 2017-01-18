@@ -60,6 +60,9 @@ public class KillRanking extends JavaPlugin{
 	
 	@Override
 	public void onDisable() {
+		if(db != null){
+			cacheManager.forEach((s,c) -> c.saveCache());
+		}
 		HandlerList.unregisterAll(this);
 	}
 	

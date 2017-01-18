@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 
 import me.jonasxpx.killranking.KillRanking;
 import me.jonasxpx.killranking.ManagerPlayer;
+import me.jonasxpx.killranking.ManagerRanking;
 import me.jonasxpx.killranking.database.CacheManager;
 
 public class Commands implements CommandExecutor{
@@ -21,8 +22,17 @@ public class Commands implements CommandExecutor{
 				if(!(sender instanceof Player)){return true;}
 				String player = sender.getName();
 				if(!ManagerPlayer.isRegistred(player) && KillRanking.instance.getXPDatabase() == null){sender.sendMessage("§cVocê não matou ninguem"); return true;}
-				sender.sendMessage("§0| §eVocê tem §f[§2§l"+ManagerPlayer.getKills(player)+"§f]§a Kills\n"
-						+ "§0| §f[§2§l" + ManagerPlayer.getRemainderForNextRank(player) + "§f] §aKills §ePara o próximo Rank");
+				
+				String rank = ManagerPlayer.getRankingByPlayer(player);
+				int max = ManagerRanking.getMaxFromStringRank(rank);
+				int kills = ManagerPlayer.getKills(player);
+				sender.sendMessage("§b§m------------------------------------------\n");
+				sender.sendMessage("§b|");
+				sender.sendMessage("§b| Você tem §f[§a§l"+kills+"§f]§a Kills");
+				sender.sendMessage("§b| §cProgresso: §0[§a"+kills+"§0/§a"+max+"§0]");
+				sender.sendMessage("§b| Veja todos os ranks com /ranks");
+				sender.sendMessage("§b|");
+				sender.sendMessage("§b§m------------------------------------------");
 			}
 			if(args.length >= 1){
 				if(sender.isOp()){
@@ -71,8 +81,18 @@ public class Commands implements CommandExecutor{
 				}
 				if(Bukkit.getPlayer(args[0]) == null)
 					KillRanking.cacheManager.put(player.getName().toLowerCase(), new CacheManager(player.getName().toLowerCase()));
-				sender.sendMessage("§0| §e"+player.getName()+" tem §f[§2§l"+ManagerPlayer.getKills(player.getName())+"§f]§a Kills\n"
-						+ "§0| §f[§2§l" + ManagerPlayer.getRemainderForNextRank(player.getName()) + "§f] §aKills §ePara o próximo Rank");
+				String rank = ManagerPlayer.getRankingByPlayer(player.getName());
+				int max = ManagerRanking.getMaxFromStringRank(rank);
+				int kills = ManagerPlayer.getKills(player.getName());
+				sender.sendMessage("§0|  tem §f[§2§l"+kills+"§f]§a Kills");
+				sender.sendMessage("§cProgresso: §0[§b"+kills+"§0/§b"+max+"§0]");
+				sender.sendMessage("§b§m------------------------------------------\n");
+				sender.sendMessage("§b|");
+				sender.sendMessage("§b| "+player.getName()+" tem §f[§a§l"+kills+"§f]§a Kills");
+				sender.sendMessage("§b| §cProgresso: §0[§a"+kills+"§0/§a"+max+"§0]");
+				sender.sendMessage("§b| Veja todos os ranks com §f/ranks");
+				sender.sendMessage("§b|");
+				sender.sendMessage("§b§m------------------------------------------");
 				if(Bukkit.getPlayer(args[0]) == null)
 					KillRanking.cacheManager.remove(player.getName().toLowerCase());
 			}
@@ -82,6 +102,4 @@ public class Commands implements CommandExecutor{
 		}
 		return false;
 	}
-	
-	
 }

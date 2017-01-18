@@ -13,7 +13,7 @@ public class Ranks implements CommandExecutor{
 	public boolean onCommand(CommandSender sender, Command command,
 			String label, String[] args) {
 		for(String ranks : KillRanking.ranks){
-			sender.sendMessage("§0|- §6" + ManagerRanking.getMinFromStringRank(ranks) + " §2a §6" + ManagerRanking.getMaxFromStringRank(ranks) + " §2- " + ManagerRanking.getTagFromStringRank(ranks));
+			sender.sendMessage("§0|- §6" + ManagerRanking.getMinFromStringRank(ranks) + " §2à §6" + ManagerRanking.getMaxFromStringRank(ranks) + " §2- " + ManagerRanking.getTagFromStringRank(ranks));
 		}
 		return false;
 	}

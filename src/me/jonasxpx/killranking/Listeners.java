@@ -35,13 +35,13 @@ public class Listeners implements Listener{
 		}
 	}
 	
-	@EventHandler
+	@EventHandler(ignoreCancelled = true)
 	public void onPlayerLogin(PlayerJoinEvent e){
 		KillRanking.cacheManager.put(e.getPlayer().getName().toLowerCase(), new CacheManager(e.getPlayer().getName().toLowerCase()));
 	}
 
 	
-	@EventHandler
+	@EventHandler(ignoreCancelled = true)
 	public void onPlayerQuit(PlayerQuitEvent e){
 		CacheManager cache = KillRanking.cacheManager.get(e.getPlayer().getName().toLowerCase());
 		cache.saveCache();
