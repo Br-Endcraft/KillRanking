@@ -114,7 +114,9 @@ public class KillRanking extends JavaPlugin{
 			getLogger().log(Level.INFO, "FlatFile enabled.");
 		else
 			getLogger().log(Level.INFO, "MySQL enabled");
-		
+		ranks.clear();
+		premiacao.clear();
+		doubleHoras.clear();
 		for(String st : getConfig().getConfigurationSection("ranks").getKeys(false)){
 			String rank = getConfig().getString("ranks."+st+".Nome") + "-"
 					+ getConfig().getInt("ranks."+st+".MinKills") + "-"
