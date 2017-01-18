@@ -6,6 +6,10 @@
 - [ ] Remove flatfiles.
 - [ ] Clear the code.
 
+
+###Download the last release
+[0.0.3](https://github.com/JonasXPX/KillRanking/releases)
+
 ###make sure if your config.yml has these codes
 ```yaml
 enable_mysql: false to flatfile | true for mysql
