@@ -27,3 +27,24 @@ To pass all user of the flatfile to MySQL, make sure if your config.yml has this
 ```yaml
 enable_mysql: true
 ```
+
+##config.yml example
+```yaml
+ranks:
+   myNewRank1:
+      Nome: NewRank
+      #Ever the first rank need to set 0 in MinKills
+      MinKills: 0
+      MaxKills: 100
+      Tag: '&a[NewRank]'
+   anotherRank2
+      Nome: User
+      MinKills: 101
+      MaxKills: 150
+      Tag: '&f[User]'
+      # key Comandos is Optional.
+      Comandos: 
+        - 'say We have a new User @player'
+        - 'money give @player 100'
+        
+```
