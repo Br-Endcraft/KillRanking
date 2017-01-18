@@ -1,7 +1,5 @@
 package me.jonasxpx.killranking;
 
-import me.jonasxpx.killranking.event.PlayerLevelUpEvent;
-
 import java.util.Arrays;
 
 import org.bukkit.Bukkit;
@@ -11,8 +9,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 import br.com.devpaulo.legendchat.api.events.ChatMessageEvent;
+import me.jonasxpx.killranking.database.CacheManager;
+import me.jonasxpx.killranking.event.PlayerLevelUpEvent;
 
 public class Listeners implements Listener{
 
@@ -34,8 +36,20 @@ public class Listeners implements Listener{
 	}
 	
 	@EventHandler
+	public void onPlayerLogin(PlayerJoinEvent e){
+		KillRanking.cacheManager.put(e.getPlayer().getName().toLowerCase(), new CacheManager(e.getPlayer().getName().toLowerCase()));
+	}
+	
+	@EventHandler
+	public void onPlayerQuit(PlayerQuitEvent e){
+		CacheManager cache = KillRanking.cacheManager.get(e.getPlayer().getName().toLowerCase());
+		cache.saveCache();
+		KillRanking.cacheManager.remove(e.getPlayer().getName().toLowerCase());
+	}
+
+	@EventHandler
 	public void playerDeathEvent(PlayerDeathEvent e){
-				if(e.getEntity().getKiller() != null && e.getEntity().getKiller() instanceof Player){
+			if(e.getEntity().getKiller() != null && e.getEntity().getKiller() instanceof Player){
 					if(KillRanking.delayTime != 0 && !ManagerPlayer.isInFreeTime(e.getEntity())){
 						Player killer = e.getEntity().getKiller();
 						Player player = e.getEntity();
