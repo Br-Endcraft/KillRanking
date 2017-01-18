@@ -44,15 +44,27 @@ public class Commands implements CommandExecutor{
 						}
 					}
 					sender.sendMessage("§7 /kills <add,rem> <player> <integer>");
+					if(args[0].equalsIgnoreCase("help")){
+						sender.sendMessage("§6¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨\n"
+								+ "§c- /kills add <User> <Kills[int]>\n"
+								+ "§c- /kills rem <User> <Kills[int]>\n"
+								+ "§c- /kills next <User> - §fAvançar 1 Rank.");
+					}
 				}
-				if(!sender.isOp() && Bukkit.getPlayer(args[0]) == null){sender.sendMessage("§cNão é possível checar Kills de jogadores offline"); return true;}
+				if(!sender.isOp() && Bukkit.getPlayer(args[0]) == null){
+					sender.sendMessage("§cNão é possível checar Kills de jogadores offline");
+					return true;
+				}
 				OfflinePlayer player = Bukkit.getOfflinePlayer(args[0]);
-				if(!ManagerPlayer.isRegistred(player.getName())){sender.sendMessage("§cEle não matou ninguem"); return true;}
+				if(!ManagerPlayer.isRegistred(player.getName())){
+					sender.sendMessage("§cEle não matou ninguem");
+					return true;
+				}
 				sender.sendMessage("§0| §e"+player.getName()+" tem §f[§2§l"+ManagerPlayer.getKills(player.getName())+"§f]§a Kills\n"
 						+ "§0| §f[§2§l" + ManagerPlayer.getRemainderForNextRank(player.getName()) + "§f] §aKills §ePara o próximo Rank");
 			}
 		}catch(Exception e){
-			sender.sendMessage("§cErro, informe em www.endcraft.com.br/forum");
+			sender.sendMessage("§cErro, informe em http://bit.ly/killranking-is");
 			e.printStackTrace();
 		}
 		return false;
