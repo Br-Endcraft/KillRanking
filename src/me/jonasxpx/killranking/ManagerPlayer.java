@@ -3,6 +3,7 @@ package me.jonasxpx.killranking;
 import java.util.HashMap;
 import java.util.Map;
 
+import me.jonasxpx.killranking.database.CacheManager;
 import me.jonasxpx.killranking.event.PlayerLevelUpEvent;
 
 import org.bukkit.Bukkit;
@@ -25,25 +26,40 @@ public class ManagerPlayer {
 	}
 	
 	public static int getKills(String player){
-		if(isRegistred(player)){
-			return KillRanking.playerFile.getInt(player.toLowerCase());
+		if(KillRanking.instance.getXPDatabase() == null){
+			if(isRegistred(player)){
+				return KillRanking.playerFile.getInt(player.toLowerCase());
+			}
+		} else {
+			CacheManager cache = KillRanking.cacheManager.get(player.toLowerCase());
+			return cache.getKills();
 		}
 		return -1;
 	}
 
 	public static void addKills(String player, int count){
-		if(count > 0){
-			if(isRegistred(player))
-				KillRanking.playerFile.set(player.toLowerCase(), getKills(player)+count);
-			else
-				forceRegister(player);
-			KillRanking.savePlayerFile();
+		if(KillRanking.instance.getXPDatabase() == null){
+			if(count > 0){
+				if(isRegistred(player))
+					KillRanking.playerFile.set(player.toLowerCase(), getKills(player)+count);
+				else
+					forceRegister(player);
+				KillRanking.savePlayerFile();
+			}
+		} else {
+			CacheManager cache = KillRanking.cacheManager.get(player.toLowerCase());
+			cache.updateCache(getKills(player.toLowerCase()) + count);
 		}
 	}
 	public static void remKills(String player, int count){
-		if(isRegistred(player))
-			KillRanking.playerFile.set(player.toLowerCase(), getKills(player)-count);
-		KillRanking.savePlayerFile();
+		if(KillRanking.instance.getXPDatabase() == null){
+			if(isRegistred(player))
+				KillRanking.playerFile.set(player.toLowerCase(), getKills(player)-count);
+			KillRanking.savePlayerFile();
+		} else {
+			CacheManager cache = KillRanking.cacheManager.get(player.toLowerCase());
+			cache.updateCache(getKills(player.toLowerCase()) - count);
+		}
 	}
 	
 	public static void addPlayerToFreeTime(Player player, Player deatPlayer){
