@@ -37,7 +37,7 @@ ranks:
       MinKills: 0
       MaxKills: 100
       Tag: '&a[NewRank]'
-   anotherRank2
+   anotherRank2:
       Nome: User
       MinKills: 101
       MaxKills: 150
