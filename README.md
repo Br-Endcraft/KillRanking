@@ -1,5 +1,17 @@
 # KillRanking
 
 *Next updates*
-- Compatibility with MySQL
-- Remove flatfiles.
+- [x] implement MySQL
+- [x] Cache improve.
+- [ ] Remove flatfiles.
+- [ ] Clear the code.
+
+###make sure if your config.yml has these code
+```yaml
+enable_mysql: false
+mysql:
+  host: localhost:3306
+  database: KillRanking
+  username: root
+  password: hackme
+```
