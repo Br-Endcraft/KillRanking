@@ -1,0 +1,64 @@
+﻿DelayAntFreeKill: 50
+AnunciarAoPassarRank: true
+Anuncio: '&d%player &aacaba de passar de ranking, agora ele e &d%rank'
+ranks:
+   nuub:
+      Nome: Numb
+      MinKills: 0
+      MaxKills: 4
+      Tag: '&8[Numb]'
+   exnuub:
+      Nome: Ex-Numb
+      MinKills: 5
+      MaxKills: 25
+      Tag: '&7[Ex-Numb]'
+   Novato:
+      Nome: Novato
+      MinKills: 26
+      MaxKills: 49
+      Tag: '&7[Novato]'
+   Matador1:
+      Nome: 'Matador |'
+      MinKills: 50
+      MaxKills: 89
+      Tag: '&3[Matador | ]'
+   Matador2:
+      Nome: 'Matador ||'
+      MinKills: 90
+      MaxKills: 149
+      Tag: '&b[Matador || ]'
+   Matador3:
+      Nome: 'Matador |||'
+      MinKills: 150
+      MaxKills: 199
+      Tag: '&c[Matador ||| ]'
+   Killer1:
+      Nome: 'Killer |'
+      MinKills: 200
+      MaxKills: 350
+      Tag: '&c[Killer |]'
+   Killer2:
+      Nome: 'Killer ||'
+      MinKills: 351
+      MaxKills: 550
+      Tag: '&c[Killer ||]'
+   Fighter:
+      Nome: 'Fighter'
+      MinKills: 551
+      MaxKills: 999
+      Tag: '&l→&5Fighter&e&l←'
+   Guerreiro:
+      Nome: 'Guerreiro'
+      MinKills: 1000
+      MaxKills: 2999
+      Tag: '&2﴾&cGuerreiro&2﴿'
+   Zeus:
+      Nome: 'Zeus'
+      MinKills: 3000
+      MaxKills: 6999
+      Tag: '&e&l►&0&k.&6&lZeus&0&k.&e&l◄"'
+   Lendario:
+      Nome: 'Lendario'
+      MinKills: 7000
+      MaxKills: 10000
+      Tag: '&c\&e&lL&eendario&c/'

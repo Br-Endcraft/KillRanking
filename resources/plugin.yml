@@ -1,0 +1,8 @@
+name: KillRanking
+Author: JonasXPX
+main: me.jonasxpx.killranking.KillRanking
+version: R1.1.0
+commands:
+    kills:
+    ranks:
+    removertag:
