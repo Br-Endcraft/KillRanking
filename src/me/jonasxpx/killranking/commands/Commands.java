@@ -33,6 +33,7 @@ public class Commands implements CommandExecutor{
 				sender.sendMessage("§b| Veja todos os ranks com /ranks");
 				sender.sendMessage("§b|");
 				sender.sendMessage("§b§m------------------------------------------");
+				return true;
 			}
 			if(args.length >= 1){
 				if(sender.isOp()){
@@ -84,8 +85,6 @@ public class Commands implements CommandExecutor{
 				String rank = ManagerPlayer.getRankingByPlayer(player.getName());
 				int max = ManagerRanking.getMaxFromStringRank(rank);
 				int kills = ManagerPlayer.getKills(player.getName());
-				sender.sendMessage("§0|  tem §f[§2§l"+kills+"§f]§a Kills");
-				sender.sendMessage("§cProgresso: §0[§b"+kills+"§0/§b"+max+"§0]");
 				sender.sendMessage("§b§m------------------------------------------\n");
 				sender.sendMessage("§b|");
 				sender.sendMessage("§b| "+player.getName()+" tem §f[§a§l"+kills+"§f]§a Kills");
