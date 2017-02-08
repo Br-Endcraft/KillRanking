@@ -30,7 +30,7 @@ mysql:
 
 ###Warning!!! if you are using the flatfile, I'll remove it in next release.
 
-To pass all user of the flatfile to MySQL, make sure if your config.yml has this line
+To move all users of the flatfile to MySQL, make sure if your config.yml has this line
 
 ```yaml
 enable_mysql: true
