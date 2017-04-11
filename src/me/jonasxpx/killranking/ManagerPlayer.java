@@ -25,6 +25,11 @@ public class ManagerPlayer {
 		KillRanking.savePlayerFile();
 	}
 	
+	/**
+	 * Retorna a quantidades de Kills de um jogador.
+	 * @param player
+	 * @return retorna kills do jogador, returna -1 caso não exista.
+	 */
 	public static int getKills(String player){
 		if(KillRanking.instance.getXPDatabase() == null){
 			if(isRegistred(player)){
@@ -37,6 +42,12 @@ public class ManagerPlayer {
 		return -1;
 	}
 
+	/**
+	 * Adiciona kills a conta do jogador, o valor é incrementado com a quantidade de
+	 * kills que o jogador já tem.
+	 * @param player 
+	 * @param count Sempre maior que 0
+	 */
 	public static void addKills(String player, int count){
 		if(KillRanking.instance.getXPDatabase() == null){
 			if(count > 0){
@@ -51,6 +62,13 @@ public class ManagerPlayer {
 			cache.updateCache(getKills(player.toLowerCase()) + count);
 		}
 	}
+	
+	/**
+	 * Remove Kills de uma conta, a quantidade informa é removida da quantidade que o jogador já contem.
+	 * Ex. Jogador tem 20 Kills, removo 5, retorno 15.
+	 * @param player
+	 * @param count
+	 */
 	public static void remKills(String player, int count){
 		if(KillRanking.instance.getXPDatabase() == null){
 			if(isRegistred(player))
@@ -62,10 +80,17 @@ public class ManagerPlayer {
 		}
 	}
 	
+	/**
+	 * Adiciona o jogador a o anti-freeKills, empede que o jogador mate o mesmo jogador, e assim as kills não será contabilizado.
+	 * @param player
+	 * @param deatPlayer
+	 */
 	public static void addPlayerToFreeTime(Player player, Player deatPlayer){
 		freeTime.put(player.getName(), (System.currentTimeMillis() / 1000 + KillRanking.delayTime 
 				+ (player.getAddress().getAddress().getHostAddress().equalsIgnoreCase(deatPlayer.getAddress().getAddress().getHostAddress()) ? 240 : 0)));
 	}
+	
+	
 	public static boolean isInFreeTime(Player player){
 		if(freeTime.containsKey(player.getName())){
 			if(freeTime.get(player.getName()) >= System.currentTimeMillis() / 1000){

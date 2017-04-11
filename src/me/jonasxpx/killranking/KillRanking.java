@@ -70,6 +70,9 @@ public class KillRanking extends JavaPlugin{
 		return this.db;
 	}
 	
+	/**
+	 * Carrega todas as configurações de banco de dados, e rankings.
+	 */
 	public void loadConfig(){
 		try{
 			if(!(new File(getDataFolder(), "config.yml").exists())){
@@ -109,14 +112,18 @@ public class KillRanking extends JavaPlugin{
 		}
 	}
 	
-	public void loadRanks(){
+	
+	private void loadRanks(){
 		if(db == null)
 			getLogger().log(Level.INFO, "FlatFile enabled.");
 		else
 			getLogger().log(Level.INFO, "MySQL enabled");
+		
 		ranks.clear();
 		premiacao.clear();
 		doubleHoras.clear();
+
+		/* Carrega os Ranks */
 		for(String st : getConfig().getConfigurationSection("ranks").getKeys(false)){
 			String rank = getConfig().getString("ranks."+st+".Nome") + "-"
 					+ getConfig().getInt("ranks."+st+".MinKills") + "-"
@@ -127,6 +134,7 @@ public class KillRanking extends JavaPlugin{
 			if(getConfig().contains("ranks."+st+".Comandos"))
 				premiacao.put(getConfig().getString("ranks."+st+".Nome"), Lists.newArrayList(getConfig().getStringList("ranks."+st+".Comandos")));
 		}
+		
 		delayTime = getConfig().getInt("DelayAntFreeKill");
 		broadcast = getConfig().getBoolean("AnunciarAoPassarRank");
 		broadcastMsg = getConfig().getString("Anuncio").replace('&', '§');
@@ -147,7 +155,7 @@ public class KillRanking extends JavaPlugin{
 		return f;
 	}
 	
-	public static void savePlayerFile(){
+	protected static void savePlayerFile(){
 		try{
 			playerFile.save(simpleFileManager());
 		}catch(IOException ex){
