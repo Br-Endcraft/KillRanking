@@ -14,6 +14,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import br.com.devpaulo.legendchat.api.events.ChatMessageEvent;
 import me.jonasxpx.killranking.database.CacheManager;
+import me.jonasxpx.killranking.event.PlayerKillEvent;
 import me.jonasxpx.killranking.event.PlayerLevelUpEvent;
 
 public class Listeners implements Listener{
@@ -67,6 +68,7 @@ public class Listeners implements Listener{
 									world.strikeLightningEffect(killer.getLocation());
 									Arrays.asList(Bukkit.getOnlinePlayers()).forEach(p -> p.sendMessage(KillRanking.broadcastMsg.replaceAll("%player", killer.getName()).replaceAll("%rank", rank)));
 								}
+								KillRanking.instance.getServer().getPluginManager().callEvent(new PlayerKillEvent(killer));
 								//Código do antigo Plugin - Funcional ;)
 								killer.sendMessage(ChatColor.DARK_GREEN+"§m" + "-------------------------------");
 								killer.sendMessage(ChatColor.GOLD +"[" + ChatColor.ITALIC + "§c"+ "PVP" + ChatColor.GOLD + "]" + "§a" +  "Matou"+"§6 " + e.getEntity().getName() );
